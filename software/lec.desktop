@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=RoboCam App
+Version=1.0
+Icon=/home/pi/LEC_software_V3/assets/img/robocam.png
+Exec=python /home/pi/LEC_software_V3/app.py
+Path=/home/pi/LEC_software_V3
+Terminal=true
+Type=Application
+
