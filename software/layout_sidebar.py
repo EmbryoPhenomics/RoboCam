@@ -426,6 +426,15 @@ def app_layout(sensor_modes):
 
                 dbc.Modal(
                     [
+                        dbc.ModalHeader(dbc.ModalTitle("Calibration Error")),
+                        dbc.ModalBody("Please make sure to stop the live stream before calibrating."),
+                    ],
+                    id="calibration-popup",
+                    is_open=False,
+                ),
+
+                dbc.Modal(
+                    [
                         dbc.ModalHeader(dbc.ModalTitle("Acquisition Error")),
                         dbc.ModalBody("Cannot save files due to a space in your folder path. Please make sure there are no spaces in your folder name."),
                     ],
@@ -593,7 +602,7 @@ def app_layout(sensor_modes):
                     html.Label('Shutter speed for the camera sensor to use, in milliseconds.'),
                     dcc.Slider(
                         id='exposure',
-                        min=0,
+                        min=1,
                         max=100,
                         value=20,
                         tooltip={'always_visible': True, 'placement': 'bottom'},

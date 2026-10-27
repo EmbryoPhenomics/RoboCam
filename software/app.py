@@ -892,17 +892,25 @@ def calibration_progress(n_intervals):
 
 
 @app.callback(
-    output=Output('calibration_state', 'children'),
+    output=[
+        Output('calibration_state', 'children'),
+        Output('calibration-popup', 'is_open')
+    ],
     inputs=[Input('calibrate-xy-button', 'n_clicks')],
     state=[State('xy_calibration_data', 'data')],
     prevent_initial_call=True
 )
 def calibrate_stage(n_clicks, data):
     if n_clicks:
-        calibration.calibrate(picam2, stage, leds, camera_settings, data)
-        return trigger
+        print(live_stream.is_streaming, camera_state.trigger, camera_state.state)
+        if (camera_state.trigger and camera_state.state == 'streaming'):
+            print('Live stream still active, exiting...')
+            return dash.no_update, True
+        else:
+            calibration.calibrate(picam2, stage, leds, camera_settings, data)
+            return trigger, False
     else:
-        return dash.no_update
+        return dash.no_update, False
 
 
 @app.long_callback(
