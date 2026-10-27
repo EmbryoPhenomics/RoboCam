@@ -129,6 +129,7 @@ class Acquisition:
         picam2 = camera_backend_picamera2.Camera()
         print('STARTING CAPTURE')
         picam2.video_capture(video_path, capture_length, exposure, fps, analogue_gain, sensor_mode)
+        picam2.close()
         return True
 
     def video_capture(self, video_path, capture_length, exposure, fps, analogue_gain, sensor_mode):
