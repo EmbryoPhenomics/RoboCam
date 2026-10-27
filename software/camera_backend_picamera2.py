@@ -347,7 +347,6 @@ class LiveStream:
         camera.configure(config)
         
         self.shutdown = False
-        self.is_streaming = True
 
         im_viewer = TkImageViewer()
 
@@ -383,6 +382,7 @@ class LiveStream:
     def start(self, exposure, fps, analogue_gain, sensor_mode=0):
         thread = threading.Thread(target=self._start, args=(exposure, fps, analogue_gain, sensor_mode))
         thread.start()
+        self.is_streaming = True
 
     def stop(self):
         self.shutdown = True
