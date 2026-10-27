@@ -20,7 +20,7 @@ SENSOR_MODE = 0
 # The first camera startup is slower than later startups. This delay starts at
 # the same time as video_capture() and keeps the first Z move inside the video.
 Z_START_DELAY = 3.0
-Z_SCAN_DISTANCE = 2.0
+Z_SCAN_DISTANCE = 0.1
 FOCUS_SMOOTHING_FRAMES = 3
 # Camera setup and the stationary pre-sweep frames are not candidates. With the
 # current 3 s movement delay, the Z sweep begins near 2.5-3 s in the MKV.
