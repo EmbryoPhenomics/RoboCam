@@ -441,10 +441,10 @@ def update_hardware_brightness(value):
     ])
 def update_camera_settings(n_clicks, cam_init, exposure, resolution, fps, analogue_gain):
     if n_clicks:
-        camera_settings.set('exposure', exposure * 1000) # Convert back to exposure units on pi
+        camera_settings.set('exposure', round(exposure) * 1000) # Convert back to exposure units on pi
         camera_settings.set('sensor_mode', resolution)
-        camera_settings.set('framerate', fps)
-        camera_settings.set('analogue_gain', analogue_gain)
+        camera_settings.set('framerate', round(fps))
+        camera_settings.set('analogue_gain', round(analogue_gain))
         return trigger  
     else:
         return dash.no_update
