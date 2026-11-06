@@ -472,9 +472,11 @@ def start_stop_live_view(n_clicks, cam_init, mode):
     if n_clicks is not None:
         if (camera_state.trigger and camera_state.state == 'streaming'):
             camera_state.on_off('streaming')
+            time.sleep(0.5)
             return trigger, trigger, None
         elif live_stream.is_streaming:
             live_stream.stop()
+            time.sleep(0.5)
             return trigger, trigger, None
         else:
             # Desktop ----
@@ -489,11 +491,13 @@ def start_stop_live_view(n_clicks, cam_init, mode):
                 print('SENSOR_MODE', sensor_mode)
                 
                 live_stream.start(exposure, fps, analogue_gain, sensor_mode)
+                time.sleep(0.5)
                 return trigger, trigger, dbc.Spinner(color='primary', size='md')
             # Browser -----
             else:
                 TabState.state = 'stream-tab'
                 camera_state.on_off('streaming')
+                time.sleet(0.5)
                 return trigger, trigger, dbc.Spinner(color='primary', size='md')
     else:
         return dash.no_update, dash.no_update, trigger
@@ -532,6 +536,7 @@ def update_still_image(n_clicks, cam_init):
         frame = resize_with_pad(frame, (960, 720))
 
         TabState.state = 'still-tab'
+        time.sleep(0.5)
         return trigger, renderers.interactiveImage('snap-image', frame), trigger
 
 
